@@ -8,6 +8,13 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
+function logger(req, res, next) {
+  console.log(
+    `${req.method} ${req.url}`
+  );
+  next();
+}
+
 server.use('/api/hubs', hubsRouter);
 
 server.get('/', (req, res) => {

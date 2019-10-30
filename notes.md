@@ -1,5 +1,11 @@
 # Middleware Notes
 
+## Jargon
+
+Separation of Concerns.
+
+_we do NOT write code for the computer, code is a communication device, _
+
 **EVERYTHING IS MIDDLEWARE!!**
 
 Well, almost everything :-)
