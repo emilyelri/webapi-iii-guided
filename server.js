@@ -1,6 +1,6 @@
 const express = require('express'); // importing a CommonJS module
-const helmet = require('./helmet');
-
+const helmet = require('helmet');
+const morgan = require('morgan');
 const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
@@ -33,17 +33,17 @@ function gateKeeper(req, res, next) {
   if (password.toLowerCase() === 'mellon') {
     next();
   } else {
-    res.status(400).json({ you: 'cannot pass!!'});
+    res.status(401).json({ you: 'cannot pass!!'});
   };
 }
 
 // global middleware
-// server.use(helmet());
+server.use(helmet());
 server.use(express.json());
 server.use(gateKeeper);
 server.use(dateLogger);
 server.use(logger);
-// server.use(morgan('dev'))'
+server.use(morgan('dev'));
 
 
 server.use('/api/hubs', hubsRouter);
